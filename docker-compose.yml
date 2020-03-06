@@ -1,10 +1,19 @@
-version "3.7"
+version: "3.7"
 
 services:
     7dtd:
-        build: .
+        image: "didstopia/7dtd-server:latest"
+        container_name: "7dtd"
+        volumes:
+            - "7dtd_steamcmd:/steamcmd/7dtd"
+            - "7dtd_data:/app/.local/share/7DaysToDie"
         ports:
             - "26900:26900"
             - "26900:26900/udp"
             - "26901:26901/udp"
             - "26902:26902/udp"
+            - "9001:9001"
+        restart: "always"
+volumes:
+    7dtd_steamcmd:
+    7dtd_data:
